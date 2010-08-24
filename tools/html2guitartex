@@ -31,8 +31,12 @@ chordpro_htmls = [
     "gold_dust_woman.chopro.html",
     "heart_of_gold.chopro.html",
     # "hey_there_delilah.chopro.html",
+    "high_and_dry.chopro.html",
     "horse.chopro.html",
+    "horse_with_no_name.chopro.html",
     "hotel_california.chopro.html",
+    "in_between_days.chopro.html",
+    "island_in_the_sun.chopro.html",
     "last_train_to_clarksville.chopro.html",
     "learning_to_fly.chopro.html",
     # "let_her_cry.chopro.html",
@@ -40,6 +44,8 @@ chordpro_htmls = [
     "lola.chopro.html",
     # "man_of_constant_sorrow.chopro.html",
     "mary_janes_last_dance.chopro.html",
+    "my_sweet_annette.chopro.html",
+    "no_rain.chopro.html",
     # "norwegian_wood.chopro.html",
     "one.chopro.html",
     # "patience.chopro.html",
@@ -47,6 +53,8 @@ chordpro_htmls = [
     "ring_of_fire.chopro.html",
     "service_and_repair.chopro.html",
     "stuck_in_the_middle_with_you.chopro.html",
+    "southern_cross.chopro.html",
+    "sundown.chopro.html",
     # "sweet_child_of_mine.chopro.html",
     # "too_late_for_love.chopro.html",
     "walk_on_the_ocean.chopro.html",
@@ -60,8 +68,9 @@ chordpro_htmls = [
 
 chordpro_files = []
 
-comment_re = re.compile(r"^[     ]*#")
-define_re = re.compile(r"\{define:\s*(?P<name>[()#/\w]+)\s+(?P<E>[x\d])\s+(?P<A>[x\d])\s+(?P<D>[x\d])\s+(?P<G>[x\d])\s+(?P<b>[x\d])\s+(?P<e>[x\d])")
+comment_re = re.compile(r"[     ]*#.*")
+# comment_re = re.compile(r"#")
+define_re = re.compile(r"\{define:\s*(?P<name>[()#/\w]+)\s+(?P<E>[ox\d])\s+(?P<A>[ox\d])\s+(?P<D>[ox\d])\s+(?P<G>[ox\d])\s+(?P<b>[ox\d])\s+(?P<e>[ox\d])")
 # {define:Fmaj7 1 0 3 2 1 x}
 columns_re = re.compile(r"\{columns:[   ]*(?P<columns>[0-9]+)")
 
@@ -72,9 +81,10 @@ def make_chordii(filename, source_lines):
     for line in source_lines:
 
         if comment_re.match(line):
+            print "skipping commented line '%s'" % line
             next
 
-        elif (line.find("{colb}") >= 0) or (line.find("{columnbreak}") >= 0):
+        elif (line.find("{colb}") == 0) or (line.find("{columnbreak}") >= 0):
 
             if chordpro_lines[0] != '{columns: 2}':
                 chordpro_lines.insert(0, '{columns: 2}')
@@ -93,11 +103,13 @@ def make_chordii(filename, source_lines):
             else:
                 group = match.group
                 frets = [group(fret) for fret in ['E', 'A', 'D', 'G', 'b', 'e']]
-                minfret = min([int(fret) for fret in frets if fret not in ['x', 'X']])
+                minfret = min([int(fret) for fret in frets if fret not in ['x', 'X', 'o', 'O']])
                 if minfret < 3:
                     minfret = 1
                 # revfrets = reversed(frets)
                 # new_define = "{define:%s %s %s}" % (group('name'), minfret, " ".join(revfrets))
+
+                frets = [fret.replace('0', 'o') for fret in frets]
                 new_define = "{define:%s %s %s}" % (group('name'), minfret, " ".join(frets))
                 chordpro_lines.append(new_define)
 
@@ -137,11 +149,13 @@ def make_guitartex(filename, source_lines):
             else:
                 group = match.group
                 frets = [group(fret) for fret in ['E', 'A', 'D', 'G', 'b', 'e']]
-                minfret = min([int(fret) for fret in frets if fret not in ['x', 'X']])
+                minfret = min([int(fret) for fret in frets if fret not in ['x', 'X', 'o', 'O']])
                 if minfret < 3:
                     minfret = 1
                 # revfrets = reversed(frets)
                 # new_define = "{define:%s %s %s}" % (group('name'), minfret, " ".join(revfrets))
+
+                frets = [fret.replace('0', 'o') for fret in frets]
                 new_define = "{define:%s %s %s}" % (group('name'), minfret, " ".join(frets))
                 chordpro_lines.append(new_define)
 
@@ -229,8 +243,8 @@ if False:
     sys.exit(0)
 
 for html in chordpro_htmls:
-    source = "sources/" + html
-    chordpro = "chopro/" + html.replace(".html", "")
+    source = "./" + html
+    chordpro = "guitartex/" + html.replace(".html", "")
     chordpro_files.append(chordpro)
 
     source_date = os.path.getmtime(source)
@@ -238,7 +252,7 @@ for html in chordpro_htmls:
     if chordpro_exists:
         chordpro_date = os.path.getmtime(chordpro)
 
-    if chordpro_exists and (source < chordpro):
+    if chordpro_exists and (source_date < chordpro_date):
         print "%s is later than source file, skipping\n" % chordpro
         pass
     else:
@@ -294,6 +308,8 @@ elif which_typesetter == GUITARTEX:
     # print >> allsongs, "{geometry:letterpaper,margin=.75in}"
     print >> allsongs, "{geometry:margin=.75in}"
     # print >> allsongs, "{font_size:10}"
+    # black and white printing:
+    print >> allsongs, "{color_chorus:.3,.3,.3}"
 
     print >> allsongs, "{book_title:Jamcrowd Songbook, Karma Chickens Edition}"
     print >> allsongs, "{book_date:September 2010}"
