@@ -1,13 +1,15 @@
 // convert basic chordpro(.chopro) to HTML
 // -Don Mahurin
 
-function chordpro2html(text)
+function chopro2html(text)
 {
 	text = text.replace(/^<pre>/i, '');
 	text = text.replace(/<\/pre>$/i, '');
 	var lines = text.split("\n");
 	var pre = 0;
 	var matches;
+	var textsize;
+	var chordsize;
 
 	for (var i=0; i < lines.length; i++)
 	{
@@ -36,10 +38,34 @@ function chordpro2html(text)
 		{
 			lines[i] = "";
 		}
-		else if(null != (matches = lines[i].match(/^{define:[^}]*?(\S+)\s+([xo\d]+)\s+([xo\d]+)\s+([xo\d]+)\s+([xo\d]+)\s+([xo\d]+)\s+([xo\d]+)\s*}$/)))
+		else if(null != (matches = lines[i].match(/^{textsize:\s*(\d+)\s*}/)))
 		{
-			// chord definition
+			lines[i] = '';
+			textsize = matches[1];
+		}
+		else if(null != (matches = lines[i].match(/^{chordsize:\s*(\d+)\s*}/)))
+		{
+			chordsize = matches[1];
+		}
+		else if(null != (matches = lines[i].match(/^{define:\s*?(\S+)\s+(base-fret\s+([\d]+)\s+frets\s+)?([xo\d]+)\s+([xo\d]+)\s+([xo\d]+)\s+([xo\d]+)\s+([xo\d]+)\s+([xo\d]+)\s*}$/)))
+		{
 			matches.shift();
+			// chord definition
+			var name = matches.shift();
+
+			var offset = 0;
+			offset = matches[0] != null ? parseInt(matches[1]) - 1 : 0;
+
+			matches.shift();
+			matches.shift();
+			for(var s=0; s < 6; s++)
+			{
+				if(matches[s] == 'o') matches[s] = offset;
+				if(matches[s] != 'x')
+					matches[s] = parseInt(matches[s]) + offset;
+			}
+			matches.unshift(name);
+
 			lines[i] = '<table cellspacing=0 style="border:1px solid"><tr><td width="150">' + matches.join('</td><td align="center" width="15">') + "</table>\n";
 		}
 		else if(null != (matches = lines[i].match(/^{(title|t):([^}]*)}/)))
@@ -119,15 +145,16 @@ function chordpro2html(text)
 	while(lines.length > 0 && lines[0] == "<br>\n")
 		lines.pop();
 
-	return "<table width=\"100%\" border=0 cellpadding=0 cellspacing=0><tr valign=\"top\"><td valign=\"top\">" +
+	return ((textsize != null ? ('<style type="text/css">* {font-size: ' + textsize + 'px; }</style>'):'') +
+	'<table width="100%" border=0 cellpadding=0 cellspacing=0><tr valign="top"><td valign="top">' +
 	lines.join('') +
-	"</td></td></table>\n";
+	'</td></td></table>');
 
 }
 
 function convert()
 {
-	document.body.innerHTML = chordpro2html(document.body.innerHTML);
+	document.body.innerHTML = chopro2html(document.body.innerHTML);
 }
 
 window.onload = convert;
