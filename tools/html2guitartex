@@ -15,6 +15,7 @@ guitartex_multicol = True
 chordpro_htmls = [
     "and_she_was.chopro.html",
     # "anyone_else_but_you.chopro.html",
+    "burning_for_you.chopro.html",
     "christians_and_pagans.chopro.html",
     "clocks.chopro.html",
     "comfortably_numb.chopro.html",
@@ -47,6 +48,7 @@ chordpro_htmls = [
     "man_of_constant_sorrow.chopro.html",
     "mary_janes_last_dance.chopro.html",
     "my_sweet_annette.chopro.html",
+    "need_you_now.chopro.html",
     "no_rain.chopro.html",
     "norwegian_wood.chopro.html",
     "one.chopro.html",
