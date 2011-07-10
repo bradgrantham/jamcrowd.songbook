@@ -1,13 +1,41 @@
-SONGS = \
+KC_SONGS = \
+    and_she_was.chopro.html \
+    burning_for_you.chopro.html \
+    clocks.chopro.html \
+    comfortably_numb.chopro.html \
+    cruel_to_be_kind.chopro.html \
+    down_under.chopro.html \
+    folsom_prison_blues.chopro.html \
+    heart_of_gold.chopro.html \
+    horse_with_no_name.chopro.html \
+    hotel_california.chopro.html \
+    im_in.chopro.html \
+    last_train_to_clarksville.chopro.html \
+    learning_to_fly.chopro.html \
+    let_her_cry.chopro.html \
+    lola.chopro.html \
+    need_you_now.chopro.html \
+    no_rain.chopro.html \
+    one.chopro.html \
+    patience.chopro.html \
+    peaceful_easy_feeling.chopro.html \
+    ring_of_fire.chopro.html \
+    soul_meets_body.chopro.html \
+    southern_cross.chopro.html \
+    stuck_in_the_middle_with_you.chopro.html \
+    sundown.chopro.html \
+    wasted_on_the_way.chopro.html \
+    wish_you_were_here.chopro.html \
+    yer_so_bad.chopro.html \
+    $(NULL)
+
+JC_SONGS = \
     and_she_was.chopro.html \
     anyone_else_but_you.chopro.html \
-    burning_for_you.chopro.html \
     christians_and_pagans.chopro.html \
     clocks.chopro.html \
     comfortably_numb.chopro.html \
     coming_up_close.chopro.html \
-    crazy_on_you_2.chopro.html \
-    crazy_on_you_3.chopro.html \
     crazy_on_you.chopro.html \
     cruel_to_be_kind.chopro.html \
     dead_flowers.chopro.html \
@@ -23,7 +51,6 @@ SONGS = \
     horse.chopro.html \
     horse_with_no_name.chopro.html \
     hotel_california.chopro.html \
-    im_in.chopro.html \
     in_between_days.chopro.html \
     island_in_the_sun.chopro.html \
     last_train_to_clarksville.chopro.html \
@@ -42,9 +69,9 @@ SONGS = \
     peaceful_easy_feeling.chopro.html \
     ring_of_fire.chopro.html \
     service_and_repair.chopro.html \
+    stuck_in_the_middle_with_you.chopro.html \
     soul_meets_body.chopro.html \
     southern_cross.chopro.html \
-    stuck_in_the_middle_with_you.chopro.html \
     sundown.chopro.html \
     sweet_child_of_mine.chopro.html \
     too_late_for_love.chopro.html \
@@ -57,6 +84,10 @@ SONGS = \
     zombie_cranberries.chopro.html \
     $(NULL)
 
-songbook.pdf: $(SONGS)
-	tools/html2guitartex
-	gtx2tex --output=pdf songbook.chopro
+jc_songbook.pdf: $(JC_SONGS)
+	for i in $^ ; do echo "$$i" ; done | tools/html2guitartex "Jamcrowd Songbook" jc_songbook.chopro
+	gtx2tex --output=pdf jc_songbook.chopro
+
+kc_songbook.pdf: $(KC_SONGS)
+	for i in $^ ; do echo "$$i" ; done | tools/html2guitartex "Jamcrowd Songbook, Karma Chickens Edition" kc_songbook.chopro
+	gtx2tex --output=pdf kc_songbook.chopro
