@@ -1,5 +1,6 @@
 KC_SONGS = \
     and_she_was.chopro.html \
+    big_yellow_taxi.chopro.html \
     burning_for_you.chopro.html \
     clocks.chopro.html \
     comfortably_numb.chopro.html \
@@ -10,6 +11,7 @@ KC_SONGS = \
     horse_with_no_name.chopro.html \
     hotel_california.chopro.html \
     im_in.chopro.html \
+    jumper.chopro.html \
     last_train_to_clarksville.chopro.html \
     learning_to_fly.chopro.html \
     let_her_cry.chopro.html \
@@ -28,6 +30,8 @@ KC_SONGS = \
     wish_you_were_here.chopro.html \
     yer_so_bad.chopro.html \
     $(NULL)
+
+#     more_than_words.chopro.html \
 
 JC_SONGS = \
     and_she_was.chopro.html \
