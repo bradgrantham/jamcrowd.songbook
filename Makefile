@@ -28,6 +28,7 @@ KC_SONGS = \
     sundown.chopro.html \
     wasted_on_the_way.chopro.html \
     wish_you_were_here.chopro.html \
+    with_a_little_help_from_my_friends.chopro.html \
     yer_so_bad.chopro.html \
     $(NULL)
 
