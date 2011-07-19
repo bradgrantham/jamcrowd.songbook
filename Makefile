@@ -25,6 +25,7 @@ KC_SONGS = \
     soul_meets_body.chopro.html \
     southern_cross.chopro.html \
     stuck_in_the_middle_with_you.chopro.html \
+    summer_of_69.chopro.html \
     sundown.chopro.html \
     wasted_on_the_way.chopro.html \
     wish_you_were_here.chopro.html \
