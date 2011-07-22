@@ -6,6 +6,7 @@ KC_SONGS = \
     comfortably_numb.chopro.html \
     cruel_to_be_kind.chopro.html \
     down_under.chopro.html \
+    eight_days_a_week.chopro.html \
     folsom_prison_blues.chopro.html \
     heart_of_gold.chopro.html \
     horse_with_no_name.chopro.html \
@@ -89,6 +90,8 @@ JC_SONGS = \
     yer_so_bad.chopro.html \
     zombie_cranberries.chopro.html \
     $(NULL)
+
+all: jc_songbook.pdf kc_songbook.pdf
 
 jc_songbook.pdf: $(JC_SONGS)
 	for i in $^ ; do echo "$$i" ; done | tools/html2guitartex "Jamcrowd Songbook" jc_songbook.chopro
