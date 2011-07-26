@@ -1,4 +1,5 @@
 KC_SONGS = \
+    amie.chopro.html \
     and_she_was.chopro.html \
     big_yellow_taxi.chopro.html \
     burning_for_you.chopro.html \
