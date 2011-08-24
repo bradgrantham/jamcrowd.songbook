@@ -2,7 +2,6 @@ KC_SONGS = \
     amie.chopro.html \
     and_she_was.chopro.html \
     big_yellow_taxi.chopro.html \
-    burning_for_you.chopro.html \
     clocks.chopro.html \
     comfortably_numb.chopro.html \
     cruel_to_be_kind.chopro.html \
@@ -30,12 +29,16 @@ KC_SONGS = \
     summer_of_69.chopro.html \
     sundown.chopro.html \
     wasted_on_the_way.chopro.html \
+    we_can_work_it_out.chopro.html \
     wish_you_were_here.chopro.html \
     with_a_little_help_from_my_friends.chopro.html \
     yer_so_bad.chopro.html \
     $(NULL)
 
+
+    # give_a_little_bit.chopro.html \
 #     more_than_words.chopro.html \
+    # burning_for_you.chopro.html \
 
 JC_SONGS = \
     and_she_was.chopro.html \
