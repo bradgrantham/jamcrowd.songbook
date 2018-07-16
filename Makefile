@@ -6,13 +6,11 @@ KC_SONGS = \
     comfortably_numb.chopro.html \
     coming_up_close.chopro.html \
     cruel_to_be_kind.chopro.html \
-    down_by_the_river.chopro.html \
     down_under.chopro.html \
     eight_days_a_week.chopro.html \
     flagpole_sitta.chopro.html \
     folsom_prison_blues.chopro.html \
     heart_of_gold.chopro.html \
-    horse.chopro.html \
     high_and_dry.chopro.html \
     horse_with_no_name.chopro.html \
     hotel_california.chopro.html \
@@ -33,7 +31,6 @@ KC_SONGS = \
     soul_meets_body.chopro.html \
     southern_cross.chopro.html \
     stuck_in_the_middle_with_you.chopro.html \
-    summer_of_69.chopro.html \
     sundown.chopro.html \
     walk_on_the_ocean.chopro.html \
     wasted_on_the_way.chopro.html \
@@ -42,14 +39,6 @@ KC_SONGS = \
     with_a_little_help_from_my_friends.chopro.html \
     yer_so_bad.chopro.html \
     $(NULL)
-
-
-#     need_you_now.chopro.html \
-#     im_in.chopro.html \
-#     big_yellow_taxi.chopro.html \
-    # give_a_little_bit.chopro.html \
-#     more_than_words.chopro.html \
-    # burning_for_you.chopro.html \
 
 JC_SONGS = \
     amie.chopro.html \
