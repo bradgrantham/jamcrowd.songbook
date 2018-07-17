@@ -104,14 +104,17 @@ all: jc_songbook.pdf kc_songbook.pdf
 clean:
 	rm -f jc_songbook.pdf kc_songbook.pdf
 
-jc_songbook.chopro: $(JC_SONGS)
-	for i in $^ ; do echo "$$i" ; done | tools/html2guitartex "Jamcrowd Songbook" jc_songbook.chopro
+jc_songbook.chopro: $(JC_SONGS) guitartex
+	for i in $(JC_SONGS) ; do echo "$$i" ; done | tools/html2guitartex "Jamcrowd Songbook" jc_songbook.chopro
 
-jc_songbook.pdf: jc_songbook.chopro
+jc_songbook.pdf: jc_songbook.chopro 
 	gtx2tex --output=pdf jc_songbook.chopro
 
-kc_songbook.chopro: $(KC_SONGS)
-	for i in $^ ; do echo "$$i" ; done | tools/html2guitartex "Jamcrowd Songbook, Karma Chickens Edition" kc_songbook.chopro
+kc_songbook.chopro: $(KC_SONGS) guitartex
+	for i in $(KC_SONGS) ; do echo "$$i" ; done | tools/html2guitartex "Jamcrowd Songbook, Karma Chickens Edition" kc_songbook.chopro
 
-kc_songbook.pdf: kc_songbook.chopro
+kc_songbook.pdf: kc_songbook.chopro 
 	gtx2tex --output=pdf kc_songbook.chopro
+
+guitartex:
+	mkdir -p guitartex
