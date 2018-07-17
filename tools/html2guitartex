@@ -221,7 +221,7 @@ for html in chordpro_htmls:
     else:
         source_file = open(source, "r")
 
-        instance = subprocess.Popen(args = "html2txt", stdin=source_file, stdout=subprocess.PIPE)
+        instance = subprocess.Popen(args = "tools/html2txt", stdin=source_file, stdout=subprocess.PIPE)
         source_lines = [line.rstrip() for line in instance.stdout]
         result = instance.wait()
         source_file.close()
